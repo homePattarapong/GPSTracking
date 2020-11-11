@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:gsheets/gsheets.dart';
+import 'package:device_info/device_info.dart';
 
 void main() {
   runApp(App());
@@ -81,11 +82,16 @@ class _AppState extends State<App> {
         desiredAccuracy: LocationAccuracy.high);
     print(position);
     var now = new DateTime.now();
+    
+    DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
+    AndroidDeviceInfo androidInfo = await deviceInfo.androidInfo;
+    // print('Running on ${androidInfo.model}');  // e.g
     var recordRow = [
       now.toString(),
       '${position.latitude}',
       '${position.longitude}',
-      '${position.latitude}, ${position.longitude}'
+      '${position.latitude}, ${position.longitude}',
+      '${androidInfo.model}'
     ];
 
     await sheet.values.appendRow(recordRow);

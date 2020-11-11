@@ -30,6 +30,7 @@ dependencies:
   cupertino_icons: ^1.0.0
   geolocator: ^6.1.6
   gsheets: ^0.2.6
+  device_info: ^1.0.0
 
 dev_dependencies:
   flutter_test:
